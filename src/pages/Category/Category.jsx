@@ -2,13 +2,21 @@ import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { selectCategoriesMap } from '../../store/categories/categorySelector'
+
+import {
+  selectCategoriesMap,
+  selectCategoriesIsLoading,
+} from '../../store/categories/categorySelector'
+
 import ProductCard from '../../components/product-card/ProductCard'
+import Spinner from '../../components/spinner/Spinner'
+
 import { CategoryContainer, Title } from './category.styles.js'
 
 const Category = () => {
   const { category } = useParams()
   const categoriesMap = useSelector(selectCategoriesMap)
+  const isLoading = useSelector(selectCategoriesIsLoading)
   const [products, setProducts] = useState(categoriesMap[category])
 
   useEffect(() => {
@@ -25,12 +33,16 @@ const Category = () => {
         />
       </Helmet>
       <Title>{category.toUpperCase()}</Title>
-      <CategoryContainer>
-        {products &&
-          products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-      </CategoryContainer>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <CategoryContainer>
+          {products &&
+            products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+        </CategoryContainer>
+      )}
     </>
   )
 }

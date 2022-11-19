@@ -1,5 +1,5 @@
-// Redux-Thunk
-// Redux thunk allow us to recieve actions that are functions. So, instead of us
+///////////////////////////////// 16. Asynchronous Redux_ Redux-Thunk /////////////////////////////////////////
+// Redux-Thunk - Redux thunk allow us to recieve actions that are functions. So, instead of us
 // dispatching a action the typical format of an object or the type of in a payload instead we pass a function.
 // this Function goes to the redux thunk and what happens is that redux then takes this function and it passes into
 // it dispatch. So, what we do at this dispatch is now we can dispatch new actions from right inside of this thunk.
@@ -13,3 +13,6 @@ const thunkMiddleware = (store) => (next) => (action) => {
     action(dispatch)
   }
 }
+
+// In Simple words - we use 1. Redux Thunk to put all the asynchronous logic in thunk. and 2. we want to follow Start, Success, Fail Pattern/Architecture.
+// 3. For Handling Asynchronous side effect event handling inside of Redux.
