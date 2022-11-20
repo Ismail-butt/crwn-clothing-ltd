@@ -6,37 +6,24 @@ import Home from './pages/Home/Home'
 import Authentication from './pages/Authentication/Authentication'
 import Shop from './pages/shop/Shop'
 import CheckOut from './pages/CheckOut/CheckOut'
-import { setCurrentUser } from './store/user/userActions'
-import {
-  createUserDocumentFromAuth,
-  onAuthStateChangedListner,
-} from './utils/firebase/firebase.utils'
+import { checkUserSession } from './store/user/userActions'
 
 const App = () => {
   const dispatch = useDispatch()
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListner((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user)
-      }
-
-      dispatch(setCurrentUser(user))
-    })
-
-    return unsubscribe
-  }, [dispatch])
+    dispatch(checkUserSession())
+  }, [])
 
   return (
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/auth' element={<Authentication />} />
-          <Route path='/shop/*' element={<Shop />} />
-          <Route path='/checkout' element={<CheckOut />} />
-        </Routes>
-      </Router>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/auth' element={<Authentication />} />
+        <Route path='/shop/*' element={<Shop />} />
+        <Route path='/checkout' element={<CheckOut />} />
+      </Routes>
+    </Router>
   )
 }
 
