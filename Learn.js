@@ -35,3 +35,19 @@ const thunkMiddleware = (store) => (next) => (action) => {
 // Important - And this becomes relevant when we actually recieve an action because if in the saga, when we get the action, we are looking at the state of the store. We will actually
 // have the state of the store after it's been updated by the action that we are responding to. So that's any important thing to remember when you think about your saga writing,
 // about what the value in the store will be.
+
+// Sagas are build on generator functions.
+
+// Generator function - resembles async-await function. But it got a diffrent flair to it. Like in async-await function whenever await comes it pause the execution untill the asynchronous
+// function completes. Well, generator functions are very similar in the sense that they also pause their execution whenever they see a specific key inside of the function, and that
+// key is called yeild.
+
+// Main thing to rememeber about 'yeild' - The moment we call 'yeild' inside of our genrator function, the yeild key is pretty much telling our generator function. Oh, Hey I don't want to do anything
+// with this. Right, I am just gonna resolve it However it is. if it's an asynchronous request, I'm going to resolve the request. And I am going to pass that value out into this object that we
+// get back. And I am gonna set it to the value prop.
+
+// But the main benefit is that the yeild will invoke the value of whatever it's yeilding and return it ouside of genrator. This is primarily what generators are used for. It's just if you want to stash multiple executions,
+// but you want to control when you want to move and continue the execution in this function onwards.
+
+// And this is the basis of Sagas. Saga's work on this yeild based format, because they need to know and give us control over when we want to continue with an execution of the block of code that we've written. Or we want to
+// do something with the first.
