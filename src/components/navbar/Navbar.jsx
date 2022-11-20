@@ -1,9 +1,12 @@
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { ReactComponent as CrwnLogo } from '../../assets/svg/083 crown.svg'
-import { signOutUser } from '../../utils/firebase/firebase.utils'
+
 import CartIcon from '../cart-icon/CartIcon'
 import CartDropdown from '../cart-dropdown/CartDropdown'
+
 import { selectIsCartOpen } from '../../store/cart/cartSelector'
+import { signOutStart } from '../../store/user/userActions'
+
 import {
   NavigationContainer,
   LogoContainer,
@@ -12,13 +15,12 @@ import {
 } from './navbar.styles'
 
 const Navbar = () => {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const { currentUser } = user
   const isCartOpen = useSelector(selectIsCartOpen)
 
-  const signOutHandler = async () => {
-    await signOutUser()
-  }
+  const signOutHandler = () => dispatch(signOutStart())
 
   return (
     <>
