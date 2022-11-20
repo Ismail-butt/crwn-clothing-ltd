@@ -17,6 +17,7 @@ const thunkMiddleware = (store) => (next) => (action) => {
 // In Simple words - we use 1. Redux Thunk to put all the asynchronous logic in thunk. and 2. we want to follow Start, Success, Fail Pattern/Architecture.
 // 3. For Handling Asynchronous side effect event handling inside of Redux.
 
+///////////////////////////////// 17 Asynchronous Redux_ Redux-Saga /////////////////////////////////////////
 // Redux Saga - is a side effect state managment library just like redux thunk, except it allows a lot more patterns and it's a lot more complex. The main
 // advantage of redux saga is it allows you to perform very complex coordination of asynchronous side effects inside of redux. Sagas is different The actions
 // will actually hit the reducers first before moving on to the sage. So in this case, it flows after the reducers have updated.
