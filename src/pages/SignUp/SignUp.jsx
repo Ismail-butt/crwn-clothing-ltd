@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from '../../utils/firebase/firebase.utils'
+import { useDispatch } from 'react-redux'
 import FormInput from '../../components/form-input/FormInput'
 import Button from '../../components/button/Button'
 import { SignUpContainer } from './signUp.styles.js'
+import { signUpStart } from '../../store/user/userActions'
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +13,8 @@ const SignUp = () => {
     confirmPassword: '',
   })
   const { displayName, email, password, confirmPassword } = formData
+
+  const dispatch = useDispatch()
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -31,11 +31,7 @@ const SignUp = () => {
     }
 
     try {
-      const userCredential = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      ) // userCredential is a auth Object.
-      await createUserDocumentFromAuth(userCredential.user, { displayName }) // sending DisplayName, bcz createUserDocument ftn is expecting a user Display name but the createAuthUserWithEmailAndPassword does not return us displayName. So, we send it by this way. Note: Google Auth return display name in the user :p
+      dispatch(signUpStart(email, password, displayName))
 
       setFormData({
         displayName: '',
