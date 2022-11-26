@@ -3,6 +3,8 @@ import { selectCartItems, selectCartTotal } from '../../store/cart/cartSelector'
 
 import { Helmet } from 'react-helmet'
 import CheckoutItem from '../../components/checkout-item/CheckoutItem'
+import PaymentForm from '../../components/payment-form/PaymentForm'
+
 import {
   CheckOutContainer,
   CheckOutHeader,
@@ -44,6 +46,7 @@ const Checkout = () => {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <Total>Total: ${cartTotal}</Total>
+      <PaymentForm />
     </CheckOutContainer>
   )
 }

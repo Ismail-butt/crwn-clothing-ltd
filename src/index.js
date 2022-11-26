@@ -7,12 +7,17 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from './store/store'
 
+import { Elements } from '@stripe/react-stripe-js'
+import { stripePromise } from './utils/stripe/stripe.utils'
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   // <React.StrictMode> // The error solved: Link: https://github.com/nfl/react-helmet/issues/548 bcz of react-helmet
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <Elements stripe={stripePromise}>
+        <App />
+      </Elements>
     </PersistGate>
   </Provider>
   // </React.StrictMode>

@@ -52,3 +52,7 @@ const thunkMiddleware = (store) => (next) => (action) => {
 
 // And this is the basis of Sagas. Saga's work on this yeild based format, because they need to know and give us control over when we want to continue with an execution of the block of code that we've written. Or we want to
 // do something with the first.
+
+///////////////////////////////// 18 Serverless Functions + Stripe /////////////////////////////////////////
+// Serverless functions - It lives on a cloud service that has these near limitless resources, and it will generate and spin up these functions whenever they're beign requested. Each of these functions lives on an end point,
+// so it's like to an API that you interface with. But the thing is that behind that endpoint lives just the service function, not necessarilty the entrire server.
